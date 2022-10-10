@@ -1,0 +1,153 @@
+﻿@model InsuranceMgmtDB.Models.tbl_users
+<script src="https://kit.fontawesome.com/b3b792a127.js" crossorigin="anonymous"></script>
+
+@{
+    ViewBag.Title = "Edit User";
+    Layout = "~/Views/SharedFolder/View.cshtml";
+}
+
+
+<style>
+    h5 {
+        font-weight: bolder;
+        font-family: sans-serif;
+    }
+
+    h2 {
+        font-weight: bolder;
+        font-family: sans-serif;
+    }
+
+    body {
+        overflow: hidden;
+    }
+</style>
+
+
+<div>
+    <h2 style="padding-left:18px; color:#5d0fb5">Edit</h2>
+
+</div>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+
+
+
+
+
+                    <div class="form-group">
+
+
+                        <div class="col-md-10">
+
+                            <h5>User Id</h5>
+                            @Html.EditorFor(model => model.user_id, new { htmlAttributes = new { @class = "form-control", required = "required", @disabled = true } })
+                            @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+
+                        <div class="col-md-10">
+
+                            <h5>User Name</h5>
+                            @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+
+                            <h5>Contact Number</h5>
+
+                            @Html.EditorFor(model => model.contact_number, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.contact_number, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+
+                            <h5>Email ID</h5>
+
+                            @Html.EditorFor(model => model.emailid, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.emailid, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+
+                            <h5>Status</h5>
+
+                            @Html.RadioButtonFor(model => model.status, "Active", true)
+                            @Html.ValidationMessageFor(model => model.emailid, "", new { @class = "text-danger" }) <span style="color:green; font-weight:bold; font-size:15px; margin-right:10px">Active </span>
+
+                            @Html.RadioButtonFor(model => model.status, "InActive", false)
+                            @Html.ValidationMessageFor(model => model.emailid, "", new { @class = "text-danger" }) <span style="color:red; font-weight:bold; font-size:15px">InActive </span>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div style="margin-left:600px">
+            <span>
+               
+                <input type="submit" value="Update" class="btn btn-primary" />
+               
+            </span>
+
+            <span>
+
+                <input type="reset" value="Cancel" class="btn btn-primary" />
+              
+            </span>
+        </div>
+
+
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Home", "Index")
+</div>

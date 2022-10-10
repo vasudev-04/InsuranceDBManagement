@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InsuranceMgtDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_advisor">
+    <Key>
+      <PropertyRef Name="advisor_id" />
+    </Key>
+    <Property Name="advisor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="representative_number" Type="nvarchar" MaxLength="100" />
+    <Property Name="advisor_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="advisor_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="date_of_appointment" Type="datetime" />
+    <Property Name="personal_info_id" Type="int" />
+    <Property Name="contact_details_id" Type="int" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+    <Property Name="promoted_date" Type="datetime" />
+    <Property Name="activity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="advisor_exp_level_id" Type="int" />
+    <Property Name="left_ceased" Type="datetime" />
+    <Property Name="joined" Type="datetime" />
+    <Property Name="created_on" Type="datetime" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="modified_on" Type="datetime" />
+    <Property Name="modified_by" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_advisor_experience_level">
+    <Key>
+      <PropertyRef Name="advisor_exp_level_id" />
+    </Key>
+    <Property Name="advisor_exp_level_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="advisor_exp_level" Type="varchar" MaxLength="50" />
+    <Property Name="created_on" Type="datetime" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="modified_on" Type="datetime" />
+    <Property Name="modified_by" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tbl_users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="200" />
+    <Property Name="group_function_id" Type="int" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="role_name" Type="varchar" MaxLength="20" />
+    <Property Name="advisor_id" Type="int" />
+    <Property Name="emailid" Type="varchar" MaxLength="100" />
+    <Property Name="contact_number" Type="varchar" MaxLength="50" />
+    <Property Name="status" Type="varchar" MaxLength="10" />
+    <Property Name="created_on" Type="datetime" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="modified_on" Type="datetime" />
+    <Property Name="modified_by" Type="int" />
+    <Property Name="display_name" Type="varchar" MaxLength="50" />
+    <Property Name="last_login_date" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="InsuranceMgtDbModelStoreContainer">
+    <EntitySet Name="tbl_advisor" EntityType="Self.tbl_advisor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_advisor_experience_level" EntityType="Self.tbl_advisor_experience_level" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

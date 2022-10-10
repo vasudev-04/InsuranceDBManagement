@@ -1,0 +1,76 @@
+﻿@model InsuranceMgmtDB.ResetPwdModel
+
+@{
+    ViewBag.Title = "ResetPwd";
+    Layout = "~/Views/SharedFolder/View.cshtml";
+}
+
+<h2>Reset Password</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <script type="text/javascript">
+        alert("@ViewBag.Message");
+    </script>
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-group">
+
+
+        <div class="col-md-10">
+
+            <h5>Current Password</h5>
+            @Html.EditorFor(model => model.currentPassword, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.currentPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+
+
+        <div class="col-md-10">
+
+            <h5>New Password</h5>
+            @Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+
+
+        <div class="col-md-10">
+
+            <h5>Confirm New Password</h5>
+            @Html.EditorFor(model => model.confirmNewPassword, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.confirmNewPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <!--<div--> @*style="margin-left:600px"*@<!-->-->
+    <span>
+        @*<div class="form-group text-center">*@
+        @*<div class="col-md-offset-2 col-md-10">*@
+        <input type="submit" value="Update" class="btn btn-primary" />
+        @*</div>
+            </div>*@
+    </span>
+
+    <span>
+
+        @*<div class="form-group text-center">
+            <div class="col-md-offset-2 col-md-10">*@
+        <input type="reset" value="Cancel" class="btn btn-primary" />
+        @*</div>
+            </div>*@
+    </span>
+    @*</div>*@
+
+
+}
+
+

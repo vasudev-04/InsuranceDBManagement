@@ -1,0 +1,174 @@
+﻿@*@model IEnumerable<InsuranceMgmtDB.Models.tbl_users>*@
+@using PagedList.Mvc
+@model  PagedList.IPagedList<InsuranceMgmtDB.Models.tbl_users>
+
+
+@*<link rel="stylesheet" href="path/to/fontawesome.min.css">*@
+
+<script src="https://kit.fontawesome.com/b3b792a127.js" crossorigin="anonymous"></script>
+
+
+@{
+    ViewBag.Title = "GetUsers";
+    Layout = "~/Views/SharedFolder/View.cshtml";
+}
+
+<head>
+    <style>
+        th {
+            color: #f7f5f5;
+        }
+
+        h2 {
+            color: blue;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<h2>All Users</h2>
+<div class="text-right">
+    <p style="padding-right:30px;">
+        <button class="btn btn-primary" onclick="window.location = '@Url.Action("NewUser", "Insurance")'"> <i class="fa-solid fa-plus" style="padding-right: 8px;"></i><span>User</span></button>
+        <button class="btn btn-primary" onclick="window.location = '@Url.Action("ExcelExport", "Insurance")'"> <i class="fa-solid fa-plus" style="padding-right: 8px;"></i><span>Export To Excel</span></button>
+
+
+        @*@Html.ActionLink("Create New", "Create")*@
+    </p>
+</div>
+
+<table class="table table-striped">
+    <tr style="background-image:linear-gradient(#0e26e8, #f7f5f5)">
+        <th>
+            Action
+        </th>
+        <th>
+            User Name
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.group_function_id)
+            </th>*@
+        <th>
+            Password
+        </th>
+        <th>
+            Role Name
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.advisor_id)
+            </th>*@
+        <th>
+            Email Id
+        </th>
+        <th>
+            Contact Number
+        </th>
+        <th>
+            Status
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.created_on)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.created_by)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modified_on)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modified_by)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.display_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.last_login_date)
+            </th>
+            <th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <i class="fas fa-edit"></i>
+                @Html.ActionLink("Edit", "Edit", new { id = item.user_id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_name)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.group_function_id)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role_name)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.advisor_id)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.emailid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contact_number)
+            </td>
+            @if (item.status == "Active")
+            {
+
+                <td>
+                    <span style="color:green"> @Html.DisplayFor(modelItem => item.status) </span>
+                </td>
+
+            }
+
+            else
+            {
+
+
+                <td>
+                    <span style="color:red"> @Html.DisplayFor(modelItem => item.status)</span>
+                </td>
+
+            }
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.created_on)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.created_by)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.modified_on)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.modified_by)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.display_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_login_date)
+                </td>*@
+            <td>
+
+                @*@Html.ActionLink(, "Edit", new { id=item.user_id }) |*@
+                @*@Html.ActionLink("Details", "Details", new { id=item.user_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.user_id })*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<div class="text-center" id="pagination">
+    @Html.PagedListPager(Model, page => Url.Action("GetUsers", new { page }), new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 4 })
+</div>
+<div>
+    <i class="fa-solid fa-arrow-left"></i>
+    @Html.ActionLink("Back to Home", "Index", "Insurance")
+
+</div>

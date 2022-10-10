@@ -1,0 +1,232 @@
+﻿@model InsuranceMgmtDB.Models.tbl_users
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="https://kit.fontawesome.com/b3b792a127.js" crossorigin="anonymous"></script>
+
+@{
+    ViewBag.Title = "NewUser";
+    Layout = "~/Views/SharedFolder/View.cshtml";
+}
+
+
+<style>
+    h5 {
+        font-weight: bolder;
+        font-family: sans-serif;
+    }
+
+    h2 {
+        font-weight: bolder;
+        font-family: sans-serif;
+    }
+
+    body {
+        overflow: hidden;
+    }
+</style>
+
+
+<div>
+    <h2 style="padding-left:18px; color:#5d0fb5">New User</h2>
+
+</div>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+
+
+                    <div class="form-group">
+
+
+                        <div class="col-md-10">
+
+                            <h5>User Name</h5>
+                            @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+
+                            <h5>Password</h5>
+
+                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @{
+
+                                IEnumerable<string> Group = new List<string> { "Advisor Group", "ISA - View Commission Summary Report" };
+
+                            }
+                            <h5>Role Name</h5>
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(m => m.role_name, new SelectList(Group), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.role_name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+
+                            <h5>Contact Number</h5>
+
+                            @Html.EditorFor(model => model.contact_number, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.contact_number, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+
+                            <h5>Email ID</h5>
+
+                            @Html.EditorFor(model => model.emailid, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.emailid, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+
+                            <h5>Status</h5>
+
+                            @Html.RadioButtonFor(model => model.status, "Active", true)
+                            @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" }) <span style="color:green; font-weight:bold; font-size:15px; margin-right:10px">Active </span>
+
+                            @Html.RadioButtonFor(model => model.status, "InActive", false)
+                            @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" }) <span style="color:red; font-weight:bold; font-size:15px">InActive </span>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div style="margin-left:600px">
+            <span>
+                @*<div class="form-group text-center">*@
+                @*<div class="col-md-offset-2 col-md-10">*@
+                <input id="submitbtn" type="submit" value="Save" class="btn btn-primary" />
+                @*</div>
+                    </div>*@
+            </span>
+
+            <span>
+
+                @*<div class="form-group text-center">
+                    <div class="col-md-offset-2 col-md-10">*@
+                <input type="reset" value="Cancel" class="btn btn-primary" />
+                @*</div>
+                    </div>*@
+            </span>
+        </div>
+
+
+
+        <script>
+            $(document).ready(function () {
+                $("#submitbtn").click(function () {
+
+
+                    var userName = $("#user_name").val();
+                    var password = $("#password").val();
+                    var contactNumber = $("#contact_number").val();
+                    var emailid = $("#emailid").val();
+                    var status = $("input[name = 'status']:checked").val();
+
+
+
+                    if (userName == '' || password == '' || contactNumber == '' || emailid == '' || status == '') {
+                        swal({
+                            title: "Fill All Mandatory Fields!",
+                            text: "Retry Again!",
+                            icon: "warning",
+                            button: "Ok!",
+                        });
+                    }
+
+                    else {
+                        swal({
+                            title: "Good Job!",
+                            text: "Details Saved Successfully!",
+                            icon: "success",
+                            button: "Ok!",
+                        });
+                    }
+
+
+                });
+
+
+            });
+
+        </script>
+
+
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Insurance")
+</div>

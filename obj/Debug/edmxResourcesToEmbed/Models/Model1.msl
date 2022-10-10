@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InsuranceMgtDbModel1StoreContainer" CdmEntityContainer="InsuranceMgtDbEntities1">
+    <EntitySetMapping Name="tbl_advisor">
+      <EntityTypeMapping TypeName="InsuranceMgtDbModel1.tbl_advisor">
+        <MappingFragment StoreEntitySet="tbl_advisor">
+          <ScalarProperty Name="advisor_id" ColumnName="advisor_id" />
+          <ScalarProperty Name="representative_number" ColumnName="representative_number" />
+          <ScalarProperty Name="advisor_code" ColumnName="advisor_code" />
+          <ScalarProperty Name="advisor_name" ColumnName="advisor_name" />
+          <ScalarProperty Name="date_of_appointment" ColumnName="date_of_appointment" />
+          <ScalarProperty Name="personal_info_id" ColumnName="personal_info_id" />
+          <ScalarProperty Name="contact_details_id" ColumnName="contact_details_id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="promoted_date" ColumnName="promoted_date" />
+          <ScalarProperty Name="activity" ColumnName="activity" />
+          <ScalarProperty Name="advisor_exp_level_id" ColumnName="advisor_exp_level_id" />
+          <ScalarProperty Name="left_ceased" ColumnName="left_ceased" />
+          <ScalarProperty Name="joined" ColumnName="joined" />
+          <ScalarProperty Name="created_on" ColumnName="created_on" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+          <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_advisor_experience_level">
+      <EntityTypeMapping TypeName="InsuranceMgtDbModel1.tbl_advisor_experience_level">
+        <MappingFragment StoreEntitySet="tbl_advisor_experience_level">
+          <ScalarProperty Name="advisor_exp_level_id" ColumnName="advisor_exp_level_id" />
+          <ScalarProperty Name="advisor_exp_level" ColumnName="advisor_exp_level" />
+          <ScalarProperty Name="created_on" ColumnName="created_on" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+          <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_users">
+      <EntityTypeMapping TypeName="InsuranceMgtDbModel1.tbl_users">
+        <MappingFragment StoreEntitySet="tbl_users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="group_function_id" ColumnName="group_function_id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+          <ScalarProperty Name="advisor_id" ColumnName="advisor_id" />
+          <ScalarProperty Name="emailid" ColumnName="emailid" />
+          <ScalarProperty Name="contact_number" ColumnName="contact_number" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created_on" ColumnName="created_on" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+          <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+          <ScalarProperty Name="display_name" ColumnName="display_name" />
+          <ScalarProperty Name="last_login_date" ColumnName="last_login_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

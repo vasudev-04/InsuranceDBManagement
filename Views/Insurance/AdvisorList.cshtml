@@ -1,0 +1,215 @@
+﻿@*@model IEnumerable<InsuranceMgmtDB.Models.tbl_advisor>*@
+@using PagedList.Mvc
+@model  PagedList.IPagedList<InsuranceMgmtDB.Models.tbl_advisor>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="table2excel.js" type="text/javascript"></script>*@
+
+
+<script src="https://kit.fontawesome.com/b3b792a127.js" crossorigin="anonymous"></script>
+
+
+@{
+    ViewBag.Title = "AdvisorList";
+    Layout = "~/Views/SharedFolder/View.cshtml";
+}
+
+<style>
+    h5 {
+        font-weight: bolder;
+        font-family: sans-serif;
+    }
+
+    h2 {
+        font-weight: bolder;
+        font-family: sans-serif;
+    }
+
+    body {
+        overflow: hidden;
+    }
+</style>
+
+
+<div>
+    <h2 style="padding-left:18px; color:#5d0fb5">
+        Advisor List <button style="margin-left:850px;" onclick="window.location = '@Url.Action("NewAdvisor","Insurance")'" class="btn btn-primary"><i class="fa-solid fa-plus" style="padding-right: 8px;"></i>Advisor</button>
+        <button style="" id="btnExport"  onclick="window.location = '@Url.Action("AdvisorExcel", "Insurance")'" class="btn btn-success"><i class="fa-solid fa-plus" style="padding-right: 8px;"></i>Export to Excel</button>
+
+        <!--<input type="submit" id="btnExport" value="Export" />-->
+        @*<span>*@@*</span>*@
+
+    </h2>
+
+
+</div>
+
+
+<table class="table table-striped" id="tblCustomers">
+    <tr style="background-image:linear-gradient(#0e26e8, #f7f5f5); color:white;">
+
+        <th>
+            Action
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.representative_number)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.First().advisor_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().advisor_name)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.date_of_appointment)
+            </th>*@
+        @*<th>
+                @Html.DisplayNameFor(model => model.personal_info_id)
+            </th>*@
+
+        @*<th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>*@
+        @*<th>
+                @Html.DisplayNameFor(model => model.promoted_date)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.First().activity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().advisor_exp_level_id)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.left_ceased)
+            </th>*@
+        @*<th>
+                @Html.DisplayNameFor(model => model.joined)
+            </th>*@
+        @*<th>
+                @Html.DisplayNameFor(model => model.created_on)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.created_by)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modified_on)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modified_by)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.First().contact_details_id)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                <i class="fas fa-edit"></i>
+                @Html.ActionLink("Edit", "Edit", new { id = item.advisor_code })
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.representative_number)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.advisor_code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.advisor_name)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.date_of_appointment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.personal_info_id)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.promoted_date)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.activity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.advisor_exp_level_id)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.left_ceased)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.joined)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.created_on)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.created_by)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.modified_on)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.modified_by)
+                </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>*@
+
+            <td>
+                @Html.DisplayFor(modelItem => item.contact_details_id)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.advisor_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.advisor_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.advisor_id })
+                </td>*@
+        </tr>
+    }
+
+</table>
+
+<div class="text-center" id="pagination">
+    @Html.PagedListPager(Model, page => Url.Action("AdvisorList", new { page }), new PagedListRenderOptions() { DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 4 })
+</div>
+
+
+<div>
+    <i class="fa-solid fa-arrow-left"></i>
+    @Html.ActionLink("Back to Home", "Index", "Insurance")
+
+</div>
+
+
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        debugger;
+        $("#btnExport").click(function () {
+            $("#tblCustomers").table2excel({
+                exclude: ".noExl",
+                name: "Results",
+                filename: "Total Advisor List",
+                fileext: ".xls",
+            });
+        });
+
+
+
+    });
+
+</script>*@

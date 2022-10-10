@@ -1,0 +1,319 @@
+﻿
+@model InsuranceMgmtDB.Models.tbl_advisor
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="https://kit.fontawesome.com/b3b792a127.js" crossorigin="anonymous"></script>
+
+
+
+@{
+    ViewBag.Title = "Advisor List";
+    Layout = null;
+}
+
+
+<style>
+    h5 {
+        font-weight: bolder;
+        font-family: sans-serif;
+    }
+
+    h2 {
+        font-weight: bolder;
+        font-family: sans-serif;
+    }
+
+    body {
+        overflow: scroll;
+        background-size: cover;
+    }
+
+
+
+    .required:after {
+        content: " *";
+        font-weight: bold;
+        color: red;
+    }
+</style>
+
+
+
+
+
+@*<div>
+        <h2 style="padding-left:18px; color:#5d0fb5">
+            Advisor List <span><button style="margin-left:888px;" class="btn btn-primary">New User</button></span>
+        </h2>
+
+
+    </div>*@
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <div class="container">
+        <div class="row">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="col-md-6 col-sm-12">
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.representative_number, "Representative Number", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bolder" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.representative_number, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.representative_number, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.advisor_code, "Advisor Code", htmlAttributes: new { @class = "control-label col-md-2 required", @style = "font-weight:bolder" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.advisor_code, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.advisor_code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.advisor_name, "Advisor Name", htmlAttributes: new { @class = "control-label col-md-2 required", @style = "font-weight:bolder" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.advisor_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.advisor_name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.email, "PromisedLand Email Address", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bolder" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.activity, "Activity", htmlAttributes: new { @class = "control-label col-md-2 required", @style = "font-weight:bolder" })
+                    <div class="col-md-10">
+                        @{
+
+                            IEnumerable<string> list = new List<string>
+                                                                                                                                                    {
+                                "Life",
+                                "CIS",
+                                "GI",
+                                "GEB"
+                            };
+
+                            foreach (var I in list)
+                            {
+                                <span>
+                                    @Html.CheckBox(I)
+                                    @Html.Label(I)
+                                </span>
+
+                            }
+
+
+
+
+                        }
+                        <p class="text text-danger" id="CheckBox"></p>
+                        @Html.ValidationMessageFor(model => model.activity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.tbl_advisor_experience_level.advisor_exp_level, "Advisory Exp Level", htmlAttributes: new { @class = "control-label col-md-2 required", @style = "font-weight:bolder", })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.tbl_advisor_experience_level.advisor_exp_level, new SelectList(@ViewBag.message), "----Select item---", htmlAttributes: new { @Required = "Required" })
+                        @Html.ValidationMessageFor(model => model.tbl_advisor_experience_level.advisor_exp_level, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-6 col-sm-12">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.date_of_appointment, "Date of Appt", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bolder" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.date_of_appointment, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.date_of_appointment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.promoted_date, "Promoted Date", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bolder" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.promoted_date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.promoted_date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.joined, "Joined Date", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bolder" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.joined, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.joined, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.left_ceased, "Left/Ceased Date", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight:bolder" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.left_ceased, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.left_ceased, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.status, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.status, "Active", htmlAttributes: new { @Required = "Required" }) <span style="color:green; font-weight:bold; font-size:15px; margin-right:10px; margin-top:10px">Active </span>
+
+                        @Html.RadioButtonFor(model => model.status, "InActive", htmlAttributes: new { @Required = "Required" }) <span style="color:red; font-weight:bold; font-size:15px; margin-right:10px">InActive </span>
+
+                        @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <span><input id="submitbtn" type="submit" value="Save" class="btn btn-primary" /></span>
+
+            <span><input type="button" value="Submit Next" class="btn btn-primary"></span>
+        </div>
+    </div>
+
+
+@*
+    @if (ViewBag.add != null)
+    {
+        
+        <script type="text/javascript">
+
+            $(function () {
+                alert("success");
+                
+                swal({
+                    title: "Good Job!",
+                    text: "Details Saved Successfully!",
+                    icon: "success",
+                    button: "Ok!",
+                });
+
+
+            });
+
+
+
+
+
+
+
+        </script>
+
+    }*@
+
+
+
+
+
+    <script>
+
+            $(document).ready(function () {
+                $("#submitbtn").click(function () {
+                    debugger;
+
+              @*      var advisorCode = $("#advisor_code").val();
+                    var advisorName = $("#advisor_name").val();
+                    /* var advisorExpLevelId = $("#advisor_exp_level_id option:selected").val();*/
+                    var advisorExpLevelId = $('#tbl_advisor_experience_level_advisor_exp_level').find('option:selected').val();
+                    var level = $("#tbl_advisor_experience_level_advisor_exp_level option:selected").val();
+                    /*var advisorExpLevelId = $('#advisor_exp_level_id option:selected').text()*/
+                    var status = $("input[name = 'status']:checked").val();*@
+
+                    var Quali1 = $('#Life:checked').val();
+                    var Quali2 = $('#GI:checked').val();
+                    var Quali3 = $('#GEB:checked').val();
+
+                    var Quali4 = $('#CIS:checked').val();
+                    var CheckBox = $('#CheckBox').val();
+
+                    if ((Quali1 == undefined && Quali2 == undefined && Quali3 == undefined && Quali4 == undefined))
+                    {
+
+                        $("#CheckBox").text("Must Fill Atleast One!!!!! ");
+                        swal({
+                            title: "Fill All Mandatory Fields!",
+                            text: "Retry Again!",
+                            icon: "warning",
+                            button: "Ok!",
+                        });
+                         $('form').submit(function (e) {
+
+                            e.preventDefault();
+
+                        });
+                    }
+
+                    else {
+                        swal({
+                            title: "Good Job!",
+                            text: "Details Saved Successfully!",
+                            icon: "success",
+                            button: "Ok!",
+                        });
+                    }
+
+
+                });
+
+
+            });
+
+    </script>
+
+
+</div>
+}
+
+
+
+
+
+
+@*<div>
+        @Html.ActionLink("Back to Home", "Index")
+    </div>*@
